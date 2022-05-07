@@ -11,7 +11,8 @@ My goal in this project is to analyze data of the top 25 highest paid NBA player
 
 For this project, I will be using Python, Pandas, Jupyter Notebook/Deepnote, PostgreSQL and Apache airflow. I will be gathering data from different sources (api, csv files), cleaning the data, and analyzing the data. I will create data visualizations representing my findings as well.
 
-![NBA Dashboard](https://user-images.githubusercontent.com/99351833/167270015-e6ed3c18-86fe-4248-a33e-f608715746ce.png)
+
+![Dashboard 1](https://user-images.githubusercontent.com/99351833/167270070-ed7f2e9a-933a-44e8-8c78-2fa6fbc55d62.png)
 ![Player Salary vs Performance](https://user-images.githubusercontent.com/99351833/167270020-cf837695-4bc1-4e07-8957-78acac743532.png)
 ![Player Salary by Category](https://user-images.githubusercontent.com/99351833/167270022-a03274bd-1a2d-41c0-a9e6-d1c92ffd7572.png)
 ![Top 50 Player Performance](https://user-images.githubusercontent.com/99351833/167270027-8211ad84-6859-4795-8b9c-35bb14760f00.png)
