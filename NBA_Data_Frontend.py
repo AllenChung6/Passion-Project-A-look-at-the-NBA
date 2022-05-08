@@ -1,6 +1,7 @@
 import pandas as pd
 import psycopg2
 
+
 # Create connection credentials to the PostgreSQL database
 try:
     # Connect to an existing database
