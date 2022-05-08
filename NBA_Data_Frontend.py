@@ -14,10 +14,13 @@ with header:
     st.title('A look into NBA Player Stats')
     st.write('You can follow and get an overview of my github project here: \
          [link](https://github.com/AllenChung6/Passion-Project-A-look-at-the-NBA)')
+    st.write('Data here was gathered from www.basketball-reference.com')
 
+# Create sidebar to filter year
 st.sidebar.header('Filter Search')
 selected_year = st.sidebar.selectbox('Year', list(reversed(range(1950,2023))))
 
+# Load Data from Data source: www.basketball-reference.com
 @st.cache
 def load_data(year):
         url = "https://www.basketball-reference.com/leagues/NBA_" + str(year) + "_per_game.html"
@@ -30,17 +33,22 @@ def load_data(year):
 playerstats = load_data(selected_year)
 
 with features:
-    # Team Selection
+    # Team Selection. Sort by unique team name and add elements to selected_team.
     sorted_by_unique_team = sorted(playerstats.Tm.unique())
     selected_team = st.sidebar.selectbox('Tm', list((x for x in sorted_by_unique_team)))
 
     # Position Selection
-    unique_pos = ['PG','SG','SF','PF','C']
-    selected_pos = st.sidebar.multiselect('Position', unique_pos, unique_pos)
+    uniq_pos = ['PG','SG','SF','PF','C']
+    sel_pos = st.sidebar.multiselect('Position', uniq_pos, uniq_pos)
+
+    #def download_file(data);
+    #    csv = data.to_csv
+
+
 
 with dataset:
     # Filtering Data
-    df_selected_team = playerstats[(playerstats.Tm == (selected_team)) & (playerstats.Pos.isin(selected_pos))]
+    df_selected_team = playerstats[(playerstats.Tm == (selected_team)) & (playerstats.Pos.isin(sel_pos))]
 
     st.write('Display Player Stats below:')
     try:
