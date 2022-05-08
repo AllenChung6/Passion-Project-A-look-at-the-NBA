@@ -21,5 +21,8 @@ def load_data(year):
     return playerstats
 playerstats = load_data(selected_year)
 
+# Team Selection
+sorted_unique_team = sorted(playerstats.Tm.unique())
+selected_team = st.sidebar.selectbox('Tm', list((x for x in sorted_unique_team)))
 
 
