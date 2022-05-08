@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-import base64
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
@@ -28,9 +27,15 @@ def load_data(year):
         data = html[0]
         raw=data.drop(data[data.Age == 'Age'].index)
         raw = raw.fillna(0)
+        #raw = raw.rename()
         playerstats = raw.drop(['Rk'], axis=1)
         return playerstats
 playerstats = load_data(selected_year)
+
+@st.cache
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
 
 with features:
     # Team Selection. Sort by unique team name and add elements to selected_team.
@@ -39,11 +44,7 @@ with features:
 
     # Position Selection
     uniq_pos = ['PG','SG','SF','PF','C']
-    sel_pos = st.sidebar.multiselect('Position', uniq_pos, uniq_pos)
-
-    #def download_file(data);
-    #    csv = data.to_csv
-
+    sel_pos = st.sidebar.multiselect('Position', uniq_pos)
 
 
 with dataset:
@@ -53,11 +54,27 @@ with dataset:
     st.write('Display Player Stats below:')
     try:
     # To avoid StreamlitAPIException: ("Eexpected bytes, got a 'int' object", 'Conversion failed for column....'), converted to str
-        df_selected_team_str = df_selected_team.astype(str)
-        st.dataframe(df_selected_team_str)
+        team_df = df_selected_team.astype(str)
+        st.dataframe(team_df)
     except Exception as e:
         st.error('There was an error. Please reload app')
     else:
         st.success('Dataset queried. Data Dimension: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
 
+# Download data as csv file
+csv = convert_df(team_df)
+st.download_button(
+label="Download data as CSV",
+data=csv,
+file_name= f'{selected_team}_Player_data.csv',
+mime='text/csv',
+)
 
+# Download data as xls file
+xls = convert_df(team_df)
+st.download_button(
+label="Download data as xls",
+data=xls,
+file_name= f'{selected_team}_Player_data.xls',
+mime='application/vnd.ms-excel',
+)
