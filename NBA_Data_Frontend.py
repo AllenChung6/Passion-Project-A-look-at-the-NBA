@@ -12,8 +12,11 @@ features = st.container()
 
 with header:       
     st.title('A look into NBA Player Stats')
-    st.sidebar.header('Filter Search')
-    selected_year = st.sidebar.selectbox('Year', list(reversed(range(1950,2023))))
+    st.write('You can follow and get an overview of my github project here: \
+         [link](https://github.com/AllenChung6/Passion-Project-A-look-at-the-NBA)')
+
+st.sidebar.header('Filter Search')
+selected_year = st.sidebar.selectbox('Year', list(reversed(range(1950,2023))))
 
 @st.cache
 def load_data(year):
