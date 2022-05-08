@@ -28,7 +28,7 @@ with visuals:
     st.write('Line Chart:')
     chart_data = pd.DataFrame(
         data=data,
-        columns=['Performance','Age',]
+        columns=['Performance','Age']
     )
     st.line_chart(chart_data)
     
