@@ -5,7 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
        
-st.title('A look at NBA Data')
+st.title('A look into NBA Player Stats')
 
 st.sidebar.header('Filter Search')
 selected_year = st.sidebar.selectbox('Year', list(reversed(range(1950,2023))))
@@ -25,4 +25,6 @@ playerstats = load_data(selected_year)
 sorted_unique_team = sorted(playerstats.Tm.unique())
 selected_team = st.sidebar.selectbox('Tm', list((x for x in sorted_unique_team)))
 
-
+# Position Selection
+unique_pos = ['Pg','SG','SF','PF','C']
+selected_team = st.sidebar.multiselect('Position', unique_pos, unique_pos)
