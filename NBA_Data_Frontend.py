@@ -26,5 +26,14 @@ sorted_unique_team = sorted(playerstats.Tm.unique())
 selected_team = st.sidebar.selectbox('Tm', list((x for x in sorted_unique_team)))
 
 # Position Selection
-unique_pos = ['Pg','SG','SF','PF','C']
-selected_team = st.sidebar.multiselect('Position', unique_pos, unique_pos)
+unique_pos = ['PG','SG','SF','PF','C']
+selected_pos = st.sidebar.multiselect('Position', unique_pos, unique_pos)
+
+# Filtering Data
+df_selected_team = playerstats[(playerstats.Tm == (selected_team)) & (playerstats.Pos.isin(selected_pos))]
+
+st.header('Display Player Stats of Selected Team(s)')
+st.success('Dataset queried. Data Dimension: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
+# To avoid StreamlitAPIException: ("Eexpected bytes, got a 'int' object", 'Conversion failed for column....'), converted to str
+df_selected_team_str = df_selected_team.astype(str)
+st.dataframe(df_selected_team_str)
