@@ -1,6 +1,8 @@
 import pandas as pd
 import streamlit as st
-   
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
 
 @st.cache
 def load_data(nrows):
@@ -10,6 +12,7 @@ def load_data(nrows):
 header = st.container()
 dataset = st.container()
 visuals = st.container()
+features = st.container()
 
 with header:
     st.title('NBA Player Compensation Analysis') 
@@ -32,4 +35,5 @@ with visuals:
     )
     st.line_chart(chart_data)
     
-    
+with features:
+    st.sidebar.header('Featured')

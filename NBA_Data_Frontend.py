@@ -1,16 +1,20 @@
 import pandas as pd
 import streamlit as st
-import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
+from PIL import Image
+
 
 header = st.container()
 dataset = st.container()
 visuals = st.container()
 features = st.container()
 
-with header:       
-    st.title('A look into NBA Player Stats')
+
+with header:
+    NBA = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/basketball_banner.jpeg')
+    st.image(NBA, width = 800)       
+    st.title('NBA StatNerd')
     st.write('You can follow and get an overview of my github project here: \
          [link](https://github.com/AllenChung6/Passion-Project-A-look-at-the-NBA)')
     st.write('Data here was gathered from www.basketball-reference.com')
@@ -71,10 +75,11 @@ mime='text/csv',
 )
 
 # Download data as xls file
-xls = convert_df(team_df)
-st.download_button(
-label="Download data as xls",
-data=xls,
-file_name= f'{selected_team}_Player_data.xls',
-mime='application/vnd.ms-excel',
-)
+# with open(output_file, "rb") as fp:
+# xls = convert_df(team_df)
+# st.download_button(
+# label="Download data as xls",
+# data=xls,
+# file_name= f'{selected_team}_Player_data.xls',
+# mime='application/vnd.ms-excel',
+# )
