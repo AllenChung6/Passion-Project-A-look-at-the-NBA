@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
+st.set_page_config(layout="wide")
 
 header = st.container()
 dataset = st.container()
@@ -13,7 +14,7 @@ features = st.container()
 
 with header:
     NBA = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/basketball_banner.jpeg')
-    st.image(NBA, width = 800)       
+    st.image(NBA, width = 900)       
     st.title('NBA StatNerd')
     st.write('You can follow and get an overview of my github project here: \
          [link](https://github.com/AllenChung6/Passion-Project-A-look-at-the-NBA)')
