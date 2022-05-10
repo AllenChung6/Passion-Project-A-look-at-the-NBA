@@ -5,6 +5,8 @@ import numpy as np
 from PIL import Image
 import seaborn as sns
 
+
+
 st.set_page_config(layout="wide", page_title="NBA StatNerd", page_icon='🖖')
 
 header = st.container()
@@ -17,10 +19,11 @@ adhoc = st.container()
 with header:
     NBA = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/basketball_banner.png')
     st.image(NBA, width = 950)       
-    st.header('NBA Stat Nerds')
     st.write('You can follow and get an overview of my github project here: \
          [link](https://github.com/AllenChung6/Passion-Project-A-look-at-the-NBA)')
     st.write('Data here was gathered from www.basketball-reference.com')
+    st.header('Stat Collector')
+    st.write('You can view or collect NBA player stats to view or download here.')
 
 # Create sidebar to filter year
 st.sidebar.header('Filter Search')
@@ -59,7 +62,6 @@ with features:
     sel_pos = st.sidebar.multiselect('Position', uniq_pos)
 
 
-
 with dataset:
     # Filtering Data
     df_selected_team = playerstats[(playerstats.Team == (selected_team)) & (playerstats.Pos.isin(sel_pos))]
@@ -72,7 +74,7 @@ with dataset:
     except Exception as e:
         st.error('There was an error. Please reload app')
     else:
-        st.success('Dataset queried. Data Dimension: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
+        st.success('Data Dimensions: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
 
     # # Dataframe styling:
     # player_df.head(20).style.set_table_styles(
@@ -105,8 +107,14 @@ with dataset:
 with adhoc:
     # Import CSV file
     st.header('Ad-hoc Analysis: Player Salary vs Performance')
+    st.write('Raw data sets were pulled from csv files on the basketballreference.com website')
+    st.write('Raw Dataset: Salaries:')
+    raw_salary = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Raw_df_salary.png')
+    st.image(raw_salary)  
+    st.write('Raw Dataset: Advanced Stats:')
+    raw_adv_stats = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Raw_df_stats.png')
+    st.image(raw_adv_stats)  
     st.write('NBA Cleaned Dataset')
-    st.markdown('The dataset used is from Basketballreference.com')
     data = pd.read_csv('output_files/Player_data.csv')
 
     def color(val):
@@ -114,27 +122,10 @@ with adhoc:
         return f'background-color: {color}'
     
     st.dataframe(data.style.applymap(color, subset=['Analysis']))
-    #format_columns = {"2021-22 Salaries ($)":"{:.2%}", "PER":"{:.2%}", "TS%":"{:.2%}","AST%":"{:.2%}","STL%":"{:.2%}","BLK%":"{:.2%}","TOV%":"{:.2%}","USG%":"{:.2%}","WS":"{:.2%}","WS/48":"{:.2%}", \
-    #"BPM":"{:.2%}", "VORP":"{:.2%}","Performance":"{:.2%}"}
-
-    def format():
-        for columns in data:
-            columns.format({"2021-22 Salaries ($)":"{:.2%}", "PER":"{:.2%}", "TS%":"{:.2%}","AST%":"{:.2%}","STL%":"{:.2%}","BLK%":"{:.2%}","TOV%":"{:.2%}","USG%":"{:.2%}","WS":"{:.2%}","WS/48":"{:.2%}", \
-            "BPM":"{:.2%}", "VORP":"{:.2%}","Performance":"{:.2%}"})
-        return data
-    
-    st.dataframe.data.format()
-
-
     #st.dataframe(data.style.format({"2021-22 Salaries ($)":"{:.2%}", "PER":"{:.2%}", "TS%":"{:.2%}","AST%":"{:.2%}","STL%":"{:.2%}","BLK%":"{:.2%}","TOV%":"{:.2%}","USG%":"{:.2%}","WS":"{:.2%}","WS/48":"{:.2%}", \
     #"BPM":"{:.2%}", "VORP":"{:.2%}","Performance":"{:.2%}"}))
-    #data3 = st.dataframe(data.style.format({"2021-22 Salaries ($)":"{:.2%}", "PER":"{:.2%}", "TS%":"{:.2%}","AST%":"{:.2%}","STL%":"{:.2%}","BLK%":"{:.2%}","TOV%":"{:.2%}","USG%":"{:.2%}","WS":"{:.2%}","WS/48":"{:.2%}", \
-    #"BPM":"{:.2%}", "VORP":"{:.2%}","Performance":"{:.2%}"}))
+  
     
-
-
-    
- 
 
 # Download data as xls file
 # with open(output_file, "rb") as fp:
