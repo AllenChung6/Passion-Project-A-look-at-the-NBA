@@ -74,6 +74,24 @@ with dataset:
     else:
         st.success('Dataset queried. Data Dimension: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
 
+    # # Dataframe styling:
+    # player_df.head(20).style.set_table_styles(
+    # [{'selector': 'th',
+    #     'props': [('background', '#7CAE00'),
+    #               ('color', 'white'),
+    #               ('font-family', 'verdana')]},
+
+    # {'selector': 'td',
+    #      'props': [('font-family', 'verdana')]},
+
+    # {'selector': 'tr:nth-of-type(odd)',
+    #      'props': [('background', '#DCDCDC')]},
+
+    # {'selector': 'tr:nth-of-type(even)',
+    #      'props': [('background', 'white')]},
+    # ]
+    # ).hide_index()
+
 
     # Download data as csv file
     csv = convert_df(player_df)
@@ -90,14 +108,33 @@ with adhoc:
     st.write('NBA Cleaned Dataset')
     st.markdown('The dataset used is from Basketballreference.com')
     data = pd.read_csv('output_files/Player_data.csv')
-    # data
 
     def color(val):
         color = 'red' if val=='Overpaid' else 'orange' if val=='Fairly Paid' else 'green'
         return f'background-color: {color}'
+    
+    st.dataframe(data.style.applymap(color, subset=['Analysis']))
+    #format_columns = {"2021-22 Salaries ($)":"{:.2%}", "PER":"{:.2%}", "TS%":"{:.2%}","AST%":"{:.2%}","STL%":"{:.2%}","BLK%":"{:.2%}","TOV%":"{:.2%}","USG%":"{:.2%}","WS":"{:.2%}","WS/48":"{:.2%}", \
+    #"BPM":"{:.2%}", "VORP":"{:.2%}","Performance":"{:.2%}"}
 
-    data = st.dataframe(data.style.applymap(color, subset=['Analysis']))
-    data = st.dataframe(data.style.format('{:.2%}'))
+    def format():
+        for columns in data:
+            columns.format({"2021-22 Salaries ($)":"{:.2%}", "PER":"{:.2%}", "TS%":"{:.2%}","AST%":"{:.2%}","STL%":"{:.2%}","BLK%":"{:.2%}","TOV%":"{:.2%}","USG%":"{:.2%}","WS":"{:.2%}","WS/48":"{:.2%}", \
+            "BPM":"{:.2%}", "VORP":"{:.2%}","Performance":"{:.2%}"})
+        return data
+    
+    st.dataframe.data.format()
+
+
+    #st.dataframe(data.style.format({"2021-22 Salaries ($)":"{:.2%}", "PER":"{:.2%}", "TS%":"{:.2%}","AST%":"{:.2%}","STL%":"{:.2%}","BLK%":"{:.2%}","TOV%":"{:.2%}","USG%":"{:.2%}","WS":"{:.2%}","WS/48":"{:.2%}", \
+    #"BPM":"{:.2%}", "VORP":"{:.2%}","Performance":"{:.2%}"}))
+    #data3 = st.dataframe(data.style.format({"2021-22 Salaries ($)":"{:.2%}", "PER":"{:.2%}", "TS%":"{:.2%}","AST%":"{:.2%}","STL%":"{:.2%}","BLK%":"{:.2%}","TOV%":"{:.2%}","USG%":"{:.2%}","WS":"{:.2%}","WS/48":"{:.2%}", \
+    #"BPM":"{:.2%}", "VORP":"{:.2%}","Performance":"{:.2%}"}))
+    
+
+
+    
+ 
 
 # Download data as xls file
 # with open(output_file, "rb") as fp:
