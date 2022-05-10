@@ -114,6 +114,12 @@ with adhoc:
     st.write('Raw Dataset: Advanced Stats:')
     raw_adv_stats = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Raw_df_stats.png')
     st.image(raw_adv_stats)  
+    st.write('I created a formula to calculate performance:')
+    perf_formula = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/performance_formula.png')
+    st.image(perf_formula) 
+    st.write('I applied the formula calculation to all players in the dataframe:')
+    analysis = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Analysis_code.png')
+    st.image(analysis) 
     st.write('NBA Cleaned Dataset')
     data = pd.read_csv('output_files/Player_data.csv')
 
