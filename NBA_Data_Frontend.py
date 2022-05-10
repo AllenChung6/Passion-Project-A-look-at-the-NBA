@@ -3,8 +3,9 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
+import seaborn as sns
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_title="NBA StatNerd", page_icon='🖖')
 
 header = st.container()
 dataset = st.container()
@@ -14,8 +15,8 @@ features = st.container()
 
 with header:
     NBA = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/basketball_banner.jpeg')
-    st.image(NBA, width = 900)       
-    st.title('NBA StatNerd')
+    st.image(NBA, width = 1300)       
+    st.header('NBA Stat Nerd')
     st.write('You can follow and get an overview of my github project here: \
          [link](https://github.com/AllenChung6/Passion-Project-A-look-at-the-NBA)')
     st.write('Data here was gathered from www.basketball-reference.com')
@@ -28,11 +29,10 @@ selected_year = st.sidebar.selectbox('Year', list(reversed(range(1950,2023))))
 @st.cache
 def load_data(year):
         url = "https://www.basketball-reference.com/leagues/NBA_" + str(year) + "_per_game.html"
-        html = pd.read_html(url, header = 0)
+        html = pd.read_html(url, header = 0) 
         data = html[0]
         raw=data.drop(data[data.Age == 'Age'].index)
         raw = raw.fillna(0)
-        #raw = raw.rename()
         playerstats = raw.drop(['Rk'], axis=1)
         return playerstats
 playerstats = load_data(selected_year)
@@ -41,6 +41,11 @@ playerstats = load_data(selected_year)
 def convert_df(df):
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
     return df.to_csv().encode('utf-8')
+
+@st.cache
+def load_data(nrows):
+    data = pd.read_csv('output_files/Player_data.csv')
+    return data
 
 with features:
     # Team Selection. Sort by unique team name and add elements to selected_team.
@@ -75,6 +80,13 @@ file_name= f'{selected_team}_Player_data.csv',
 mime='text/csv',
 )
 
+# Import CSV file
+st.header('Ad-hoc Analysis: Player Salary vs Performance')
+st.write('NBA Cleaned Dataset')
+st.markdown('The dataset used is from Basketballreference.com')
+data = pd.read_csv('output_files/Player_data.csv')
+data
+
 # Download data as xls file
 # with open(output_file, "rb") as fp:
 # xls = convert_df(team_df)
@@ -84,3 +96,14 @@ mime='text/csv',
 # file_name= f'{selected_team}_Player_data.xls',
 # mime='application/vnd.ms-excel',
 # )
+
+# with visuals:
+#     def line_plot():
+#         page = st.sidebar.selectbox(
+#             "Select a Page",
+#             ["Line Plot"]
+#         )
+
+#     sns.lmplot(x= team_df['Player'], y= team_df['PTS'], data=team_df)
+#     fig = plt.figure(figsize=(8,4))
+#     st.pyplot(fig)
