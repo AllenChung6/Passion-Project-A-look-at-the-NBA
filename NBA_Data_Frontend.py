@@ -15,9 +15,9 @@ adhoc = st.container()
 
 
 with header:
-    NBA = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/basketball_banner.jpeg')
-    st.image(NBA, width = 1400)       
-    st.header('NBA Stat Nerd')
+    NBA = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/basketball_banner.png')
+    st.image(NBA, width = 950)       
+    st.header('NBA Stat Nerds')
     st.write('You can follow and get an overview of my github project here: \
          [link](https://github.com/AllenChung6/Passion-Project-A-look-at-the-NBA)')
     st.write('Data here was gathered from www.basketball-reference.com')
@@ -96,7 +96,8 @@ with adhoc:
         color = 'red' if val=='Overpaid' else 'orange' if val=='Fairly Paid' else 'green'
         return f'background-color: {color}'
 
-    st.dataframe(data.style.applymap(color, subset=['Analysis']))
+    data = st.dataframe(data.style.applymap(color, subset=['Analysis']))
+    data = st.dataframe(data.style.format('{:.2%}'))
 
 # Download data as xls file
 # with open(output_file, "rb") as fp:
