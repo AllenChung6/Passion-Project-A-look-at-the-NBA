@@ -174,7 +174,7 @@ with adhoc:
     analysis = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Analysis_code.png')
     st.image(analysis) 
     st.write('NBA Cleaned Dataset')
-    data = pd.read_csv('output_files/Player_data.csv')
+    data = pd.read_csv('output_files/Player_data.csv').drop(['Rank'], axis=1)
 
     def color(val):
         color = 'red' if val=='Overpaid' else 'orange' if val=='Fairly Paid' else 'green'
@@ -205,6 +205,6 @@ with adhoc:
 #             ["Line Plot"]
 #         )
 
-#     sns.lmplot(x= team_df['Player'], y= team_df['PTS'], data=team_df)
+#     sns.lmplot(x= player_df['FG'], y= player_df['PTS'], data=player_df)
 #     fig = plt.figure(figsize=(8,4))
 #     st.pyplot(fig)
