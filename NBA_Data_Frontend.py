@@ -3,8 +3,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
-import seaborn as sns
 import base64
+import seaborn as sns
 
 
 
@@ -36,10 +36,10 @@ def load_data(year):
         url = "https://www.basketball-reference.com/leagues/NBA_" + str(year) + "_per_game.html"
         html = pd.read_html(url, header = 0) 
         data = html[0]
-        raw=data.drop(data[data.Age == 'Age'].index)
-        raw = raw.fillna(0)
-        raw = raw.rename(columns={'Tm': 'Team'})
-        playerstats = raw.drop(['Rk'], axis=1)
+        raw_data=data.drop(data[data.Age == 'Age'].index)
+        raw_data= raw_data.fillna(0)
+        raw_data= raw_data.rename(columns={'Tm': 'Team'})
+        playerstats = raw_data.drop(['Rk'], axis=1)
         return playerstats
 playerstats = load_data(selected_year)
 
@@ -71,6 +71,7 @@ def sidebar(image):
 image = '/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/basketball_sidebar.jpeg'
 sidebar(image)
 
+# Adding backgrounf image
 #@st.cache
 # def get_base64_of_bin_file(bin_file):
 #     with open(bin_file, 'rb') as f:
@@ -156,14 +157,14 @@ with dataset:
     mime='application/vnd.ms-excel',
     )
 
-    # # Seaborn Line Plot
-    # if st.button('Line Plot'):
-    #     st.header('Line Plot')
-    #     df_selected_team.to_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv',index=False)
-    #     df = pd.read_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv')
-    #     fig = plt.figure(figsize=(2,2))
-    #     sns.lineplot(x= 'MP', y= 'PTS', data=df)
-    #     st.pyplot(fig)
+    # Seaborn Line Plot
+    if st.button('Line Plot'):
+        st.header('Line Plot: Player Pt Average Per Game')
+        df_selected_team.to_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv',index=False)
+        df = pd.read_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv')
+        fig = plt.figure(figsize=(15,8))
+        sns.lineplot(x= df['Player'], y= df['PTS'], data=df)
+        st.pyplot(fig)
 
 with adhoc:
     # Import CSV file
@@ -197,13 +198,4 @@ with adhoc:
     dashboard = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Dashboard 1.png')
     st.image(dashboard) 
 
-# Download data as xls file
-# with open(output_file, "rb") as fp:
-# xls = convert_df(team_df)
-# st.download_button(
-# label="Download data as xls",
-# data=xls,
-# file_name= f'{selected_team}_Player_data.xls',
-# mime='application/vnd.ms-excel',
-# )
 
