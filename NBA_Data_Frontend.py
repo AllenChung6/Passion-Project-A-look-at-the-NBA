@@ -8,7 +8,7 @@ import seaborn as sns
 
 
 
-st.set_page_config(layout="wide", page_title="NBA StatNerd", page_icon='🖖')
+st.set_page_config(layout="wide", page_title="NBA Stat Hub", page_icon='🖖')
 
 header = st.container()
 dataset = st.container()
@@ -162,8 +162,8 @@ with dataset:
         st.header('Line Plot: Player Pt Average Per Game')
         df_selected_team.to_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv',index=False)
         df = pd.read_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv')
-        fig = plt.figure(figsize=(15,8))
-        sns.lineplot(x= df['Player'], y= df['PTS'], data=df)
+        fig = plt.figure(figsize=(20,8))
+        sns.barplot(x= df['PTS'], y= df['Player'], data=pd.melt(df, ['Player']))
         st.pyplot(fig)
 
 with adhoc:
