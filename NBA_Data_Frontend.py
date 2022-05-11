@@ -118,7 +118,7 @@ with dataset:
     except Exception as e:
         st.error('There was an error. Please reload app')
     else:
-        st.success('Data Dimensions: ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
+        st.success('Dataframe Dimensions ' + str(df_selected_team.shape[0]) + ' rows and ' + str(df_selected_team.shape[1]) + ' columns.')
 
     # # Dataframe styling:
     # player_df.head(20).style.set_table_styles(
