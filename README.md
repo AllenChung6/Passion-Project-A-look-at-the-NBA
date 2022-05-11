@@ -1,8 +1,6 @@
 # Passion-Project-A-look-at-NBA-Data
 
-PART I
-
-SEEKING NBA DATA
+PART I - Stat Collector
 
 In this project, I will be gathering data from the data source www.basketball-reference.com via webscraping and presenting it to the user. The user can filter through different criteria and the data will be presented to the user. The user can then print out this data into a csv file. 
 
@@ -11,7 +9,7 @@ I will then build a datapipeline that will load the csv file data into a sql dat
 I will be using Python, Pandas, Seaborn, Streamlit, and Apache Airflow for this part.
 
 
-PART II 
+PART II - Adhoc Analysis, Player salary vs Perfomrance
 
 Determining how much an NBA player is worth salary-wise is on the mind of NBA team owners everywhere. Once a player contract is up, an owner can do 1 of 3 things. They can either:
 
