@@ -49,7 +49,7 @@ def convert_df(df):
     return df.to_csv().encode('utf-8')
 
 @st.cache
-def load_data(nrows):
+def load_data():
     data = pd.read_csv('output_files/Player_data.csv')
     return data
 
@@ -156,6 +156,15 @@ with dataset:
     mime='application/vnd.ms-excel',
     )
 
+    # # Seaborn Line Plot
+    # if st.button('Line Plot'):
+    #     st.header('Line Plot')
+    #     df_selected_team.to_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv',index=False)
+    #     df = pd.read_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv')
+    #     fig = plt.figure(figsize=(2,2))
+    #     sns.lineplot(x= 'MP', y= 'PTS', data=df)
+    #     st.pyplot(fig)
+
 with adhoc:
     # Import CSV file
     st.header('Ad-hoc Analysis: Player Salary vs Performance')
@@ -198,13 +207,3 @@ with adhoc:
 # mime='application/vnd.ms-excel',
 # )
 
-# with visuals:
-#     def line_plot():
-#         page = st.sidebar.selectbox(
-#             "Select a Page",
-#             ["Line Plot"]
-#         )
-
-#     sns.lmplot(x= player_df['FG'], y= player_df['PTS'], data=player_df)
-#     fig = plt.figure(figsize=(8,4))
-#     st.pyplot(fig)
