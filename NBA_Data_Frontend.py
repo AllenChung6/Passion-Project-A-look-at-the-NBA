@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 import seaborn as sns
+import base64
 
 
 
@@ -17,7 +18,7 @@ adhoc = st.container()
 
 
 with header:
-    NBA = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/basketball_banner.png')
+    NBA = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/basketball_banner3.png')
     st.image(NBA, width = 950)       
     st.write('You can follow and get an overview of my github project here: \
          [link](https://github.com/AllenChung6/Passion-Project-A-look-at-the-NBA)')
@@ -51,6 +52,48 @@ def convert_df(df):
 def load_data(nrows):
     data = pd.read_csv('output_files/Player_data.csv')
     return data
+
+def sidebar(image):
+    sidebar_fmt = 'jpeg'
+
+    st.markdown(
+        f"""
+      <style>
+      [data-testid="stSidebar"] > div:first-child {{
+          background: url(data:image/{sidebar_fmt};base64,{base64.b64encode(open(image, "rb").read()).decode()});
+          background-size: cover;
+      }}
+      </style>
+      """,
+        unsafe_allow_html=True,
+    )
+
+image = '/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/basketball_sidebar.jpeg'
+sidebar(image)
+
+#@st.cache
+# def get_base64_of_bin_file(bin_file):
+#     with open(bin_file, 'rb') as f:
+#         data = f.read()
+#     return base64.b64encode(data).decode()
+
+# def set_png_as_page_bg(jpeg_file):
+#     bin_str = get_base64_of_bin_file(jpeg_file)
+#     page_bg_img = '''
+#     <style>
+#     .stApp{
+#         background-image: url("data:image/jpeeg;base64,%s");
+#         background-size: cover;
+#     }
+#     </style>
+#     ''' % bin_str
+    
+#     st.markdown(page_bg_img, unsafe_allow_html=True)
+#     return
+
+# set_png_as_page_bg('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/hardwood_court2.jpeg')
+
+#st.sidebar.image("/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/hardwood_court2.jpeg", use_column_width=True)
 
 with features:
     # Team Selection. Sort by unique team name and add elements to selected_team.
@@ -102,6 +145,15 @@ with dataset:
     data=csv,
     file_name= f'{selected_team}_Player_data.csv',
     mime='text/csv',
+    )
+
+    #Download data as xls file
+    xls = convert_df(player_df)
+    st.download_button(
+    label="Download data as XLS",
+    data=xls,
+    file_name= f'{selected_team}_Player_data.xls',
+    mime='application/vnd.ms-excel',
     )
 
 with adhoc:
