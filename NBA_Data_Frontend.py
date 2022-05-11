@@ -166,6 +166,7 @@ with adhoc:
     st.write('Raw Dataset: Advanced Stats:')
     raw_adv_stats = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Raw_df_stats.png')
     st.image(raw_adv_stats)  
+    st.write('Removed all players that played less than 50 games as they skewed data. Also removed the players with no advanced stats recorded.')
     st.write('I created a formula to calculate performance:')
     perf_formula = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/performance_formula.png')
     st.image(perf_formula) 
@@ -183,7 +184,9 @@ with adhoc:
     #st.dataframe(data.style.format({"2021-22 Salaries ($)":"{:.2%}", "PER":"{:.2%}", "TS%":"{:.2%}","AST%":"{:.2%}","STL%":"{:.2%}","BLK%":"{:.2%}","TOV%":"{:.2%}","USG%":"{:.2%}","WS":"{:.2%}","WS/48":"{:.2%}", \
     #"BPM":"{:.2%}", "VORP":"{:.2%}","Performance":"{:.2%}"}))
   
-    
+    st.write('Tableau Data Visualizations')
+    dashboard = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Dashboard 1.png')
+    st.image(dashboard) 
 
 # Download data as xls file
 # with open(output_file, "rb") as fp:
