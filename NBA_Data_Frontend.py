@@ -19,7 +19,7 @@ adhoc = st.container()
 
 with header:
     NBA = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/basketball_banner3.png')
-    st.image(NBA, width = 950)       
+    st.image(NBA, width = 1400)       
     st.write('You can follow and get an overview of my github project here: \
          [link](https://github.com/AllenChung6/Passion-Project-A-look-at-the-NBA)')
     st.write('Data here was gathered from www.basketball-reference.com')
@@ -158,8 +158,8 @@ with dataset:
     )
 
     # Seaborn Line Plot
-    if st.button('Line Plot'):
-        st.header('Line Plot: Player Pt Average Per Game')
+    if st.button('Bar Plot'):
+        st.header('Bar Plot: Player Pt Average Per Game')
         df_selected_team.to_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv',index=False)
         df = pd.read_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv')
         fig = plt.figure(figsize=(20,8))
