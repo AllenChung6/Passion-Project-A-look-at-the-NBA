@@ -158,7 +158,7 @@ with dataset:
     )
 
     # Seaborn Line Plot
-    if st.button('Bar Plot'):
+    if st.button('Bar Plot (PlayerPts per game)'):
         st.header('Bar Plot: Player Pt Average Per Game')
         df_selected_team.to_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv',index=False)
         df = pd.read_csv(f'/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/output_files/player_df.csv')
@@ -180,6 +180,15 @@ with adhoc:
     st.write('I created a formula to calculate performance:')
     perf_formula = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/performance_formula.png')
     st.image(perf_formula) 
+    st.write('Here are the percentiles I used for player salary:')
+    salary_percentile = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Salary_percentile.png')
+    st.image(salary_percentile) 
+    st.write('Here are the percentiles I used for player salary:')
+    salary_percentile = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Salary_percentile.png')
+    st.image(salary_percentile)
+    st.write('Here are the percentiles I used for player performance:')
+    perf_percentile = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/perf_percentile.png')
+    st.image(perf_percentile)  
     st.write('I applied the formula calculation to all players in the dataframe:')
     analysis = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Analysis_code.png')
     st.image(analysis) 
