@@ -39,9 +39,9 @@ For this project, I will be using Python, Pandas, Jupyter Notebook/Deepnote. I w
 Backlog:
 
 -Finish building out Data Pipeline by loading csv file into SQL Database. Will use Docker + Airflow to achieve this. <br>
--Build out more seaborn visualizations for Stat Collector dataframes.
--Web scrape and display more datasets (such as Team data)
--Add more search criteria.
--Customize dataframe styling (for better looking dataframes)
--Deploy to Heroku.
+-Build out more seaborn visualizations for Stat Collector dataframes.<br>
+-Web scrape and display more datasets (such as Team data)<br>
+-Add more search criteria.<br>
+-Customize dataframe styling (for better looking dataframes)<br>
+-Deploy to Heroku.<br>
 
