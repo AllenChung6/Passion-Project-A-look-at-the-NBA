@@ -53,6 +53,9 @@ def load_data():
     data = pd.read_csv('output_files/Player_data.csv')
     return data
 
+# Add tean data here
+@st.cache
+
 def sidebar(image):
     sidebar_fmt = 'jpeg'
 
@@ -202,6 +205,15 @@ with adhoc:
     st.dataframe(data.style.applymap(color, subset=['Analysis']))
     #st.dataframe(data.style.format({"2021-22 Salaries ($)":"{:.2%}", "PER":"{:.2%}", "TS%":"{:.2%}","AST%":"{:.2%}","STL%":"{:.2%}","BLK%":"{:.2%}","TOV%":"{:.2%}","USG%":"{:.2%}","WS":"{:.2%}","WS/48":"{:.2%}", \
     #"BPM":"{:.2%}", "VORP":"{:.2%}","Performance":"{:.2%}"}))
+
+    # Download data as csv file
+    csv = convert_df(data)
+    st.download_button(
+    label="Download data as CSV",
+    data=csv,
+    file_name= 'Salary_Performance_data.csv',
+    mime='text/csv',
+    )
   
     st.write('Tableau Data Visualizations')
     dashboard = Image.open('/Users/allenc/PyCharmProjects/JupyterProjects/Passion-Project-A-look-at-the-NBA/Images/Dashboard 1.png')
