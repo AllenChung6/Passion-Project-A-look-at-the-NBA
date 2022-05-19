@@ -53,7 +53,7 @@ def load_data():
     data = pd.read_csv('output_files/Player_data.csv')
     return data
 
-# Add tean data here
+# Add team data here
 @st.cache
 
 def sidebar(image):
@@ -110,7 +110,7 @@ with features:
 
 
 with dataset:
-    # Filtering Data
+    # Filtering Player Data
     df_selected_team = playerstats[(playerstats.Team == (selected_team)) & (playerstats.Pos.isin(sel_pos))]
 
     st.write('Display Player Stats below:')
